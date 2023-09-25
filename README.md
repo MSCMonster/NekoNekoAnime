@@ -11,7 +11,7 @@
 ## 安装
 
 0. 使用Windows系统
-1. 安装Node.js 添加到环境变量
+1. 安装Node.js(v14.17.4) 添加到环境变量
 2. 克隆本存储库到本地
 3. cd到当前目录 使用`npm install`初始化项目依赖
 4. 将index-example.js重命名为index.js
