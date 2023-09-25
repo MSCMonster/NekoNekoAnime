@@ -1,0 +1,25 @@
+.content-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* 将父元素分成两栏，均分空间 */
+    grid-gap: 10px;
+    /* 设置列之间的间隔 */
+    align-items: center;
+}
+
+.mdui-list-item{
+    margin: 10px 0;
+}
+
+.mdui-list-item-text{
+    font-weight: bolder;
+}
+
+.mdui-list-item-title{
+    font-weight: bolder;
+}
+
+li {
+    padding: 5px 10px;
+    margin: 10px;
+}

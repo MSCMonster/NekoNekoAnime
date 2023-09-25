@@ -1,0 +1,120 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffe9f8;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 300px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input[type="text"],
+input[type="password"] {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type="password"] {
+    margin-bottom: -5px;
+}
+
+button#login-btn {
+    background-color: #4CAF50 !important;
+}
+
+button#register-btn {
+    background-color: #007bff !important;
+}
+
+button {
+    padding: 10px;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button#login-btn:hover {
+    background-color: #45a049;
+}
+
+button#register-btn:hover {
+    background-color: #0056b3;
+}
+
+p {
+    text-align: center;
+    margin-top: 10px;
+}
+
+p a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+
+.remember-me-checkbox {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+.remember-me-checkbox input[type="checkbox"] {
+    display: none;
+}
+
+.remember-me-checkbox label {
+    position: relative;
+    padding-left: 28px;
+}
+
+.remember-me-checkbox .checkmark {
+    position: absolute;
+    color: #fff !important;
+    left: 0;
+    top: 0;
+    height: 18px;
+    width: 18px;
+    border: 2px solid #ccc;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    transition: all 0.3s ease;
+}
+
+.remember-me-checkbox .checktext {
+    padding: 10px;
+}
+
+.remember-me-checkbox input[type="checkbox"]:checked+label .checkmark {
+    content: "";
+    transform: rotate(360deg);
+    border-color: #2ecc71;
+    background-color: #2ecc71;
+    color: white;
+}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <title>图片转ascii</title>
+    <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" />
+    <link rel="stylesheet" type="text/css" href="/public/style.css">
+    <link rel="stylesheet" type="text/css" href="/public/header.css">
+    <link rel="stylesheet" type="text/css" href="/public/animeindex.css">
+    <link rel="stylesheet" type="text/css" href="/public/animeconsole.css">
+    <script src="/public/jquery-3.6.0.min.js"></script>
+    <style>
+        div#content>div {
+            line-height: 1;
+            font-family: "Courier New", Courier, monospace;
+            background-color: #fff;
+        }
+    </style>
+</head>
+
+<body class="mdui-theme-primary-pink">
+    <header mdui-headroom>
+        <div class="left">
+            <a id="home-btn" href="/">欢迎！<%= nickname %></a>
+        </div>
+        <div id='logout-btn' class="right header-btn">
+            <a href="/logout">
+                <i class="mdui-icon material-icons">&#xe879;</i>
+            </a>
+        </div>
+    </header>
+    <section class="main-content mdui-container"
+        style="padding-top: 60px;display: flex;flex-direction: column;align-items: center;">
+        <div class="mdui-card">
+            <div class="mdui-card-media">
+                <img src="#" class="mdui-img-fluid" id="previewImage" style="display: none;" />
+                <div class="mdui-card-menu">
+                    <button class="mdui-btn mdui-btn-icon mdui-text-color-white">
+                        <i class="mdui-icon material-icons">share</i>
+                    </button>
+                </div>
+            </div>
+            <div class="mdui-card-primary">
+                <div class="mdui-card-primary-subtitle">生成字符画的宽度</div>
+                <label class="mdui-slider mdui-slider-discrete">
+                    <input type="range" step="1" min="1" max="800" id="img-width" />
+                </label>
+            </div>
+            <div class="mdui-card-content text-grid" id="content"></div>
+            <div class="mdui-card-actions" style="display: flex;">
+                <input type="file" id="imageInput" class="mdui-btn mdui-ripple mdui-float-left" style="height: 60%;">
+                <button class="mdui-btn mdui-ripple mdui-float-right" style="flex: 1;" id="uploadButton">生成</button>
+            </div>
+            <div class="mdui-progress mdui-hidden" id="progress">
+                <div class="mdui-progress-indeterminate"></div>
+            </div>
+        </div>
+    </section>
+    <script src="/public/imgascii.js"></script>
+    <script src="/public/mdui.min.js"></script>
+</body>
+
+</html>

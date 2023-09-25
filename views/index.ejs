@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <title>首页</title>
+    <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" />
+    <link rel="stylesheet" type="text/css" href="/public/style.css">
+    <link rel="stylesheet" type="text/css" href="/public/header.css">
+    <link rel="stylesheet" type="text/css" href="/public/index.css">
+
+</head>
+
+<body class="mdui-theme-primary-indigo mdui-theme-accent-cyan">
+    <header>
+        <div class="left">
+            <a id="home-btn" href="/">欢迎！<%= nickname %></a>
+        </div>
+        <div id='logout-btn' class="right header-btn">
+            <a href="/logout">登出</a>
+        </div>
+    </header>
+    <div id="main-content" style="padding-top: 60px;" class="mdui-container">
+        <a href="/animeindex">
+            <button class='mdui-color-theme-accent mdui-btn mdui-btn-raised mdui-ripple mbtn mdui-shadow-12'>
+                动漫小站
+            </button>
+        </a>
+        <% if (perm>=9000) { %>
+            <a href="/animeconsole">
+                <button class='mdui-color-theme-accent mdui-btn mdui-btn-raised mdui-ripple mbtn mdui-shadow-12'>
+                    动漫控制台
+                </button>
+            </a>
+        <% } %>
+        <a href="/chatroom">
+            <button class='mdui-color-theme-accent mdui-btn mdui-btn-raised mdui-ripple mbtn mdui-shadow-12'>
+                聊天室
+            </button>
+        </a>
+        </a>
+        <a href="/randompartner">
+            <button class='mdui-color-theme-accent mdui-btn mdui-btn-raised mdui-ripple mbtn mdui-shadow-12'>
+                明日方舟随机干员小工具
+            </button>
+        </a>
+        <a href="/texts">
+            <button class='mdui-color-theme-accent mdui-btn mdui-btn-raised mdui-ripple mbtn mdui-shadow-12'>
+                文章超市
+            </button>
+        </a>
+    </div>
+    <script src="/public/mdui.min.js"></script>
+</body>
+
+</html>

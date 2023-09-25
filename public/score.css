@@ -1,0 +1,346 @@
+body {
+    font-family: "微软雅黑", Arial, sans-serif;
+}
+
+
+title {
+    font-size: 24px;
+    font-weight: bolder;
+    padding-bottom: 10px;
+}
+subtitle {
+    font-size: larger;
+}
+
+info {
+    padding: 1vh 1vh 1vh 0;
+    display: flex;
+    flex-direction: row;
+    font-weight: bolder;
+    justify-content: space-between;
+}
+
+info>div>line {
+    display: flex;
+    align-items: center;
+}
+
+tone {
+    letter-spacing: 2px;
+}
+
+signature {
+    padding: 0 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+signature>fractionBar {
+    height: 1px;
+    width: 15px;
+    background-color: black;
+}
+
+bpm>* {
+    padding: 0 1px;
+}
+
+score {
+    width: 100%;
+    height: min-content;
+    background-color: #dadada;
+    font-weight: bolder;
+    font-size: larger;
+}
+
+score>line {
+    height: 8vh;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+bar {
+    flex: 25%;
+    height: 3vh;
+    border-right: 1px solid black;
+    padding: 0 1%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+}
+
+beat {
+    flex: 25%;
+    padding: 0 3%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+note {
+    padding-left: 3%;
+    padding-right: 2%;
+}
+
+/* 默认情况下，所有的note都左对齐 */
+note {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+}
+
+/* 如果只有一个note元素，则左对齐 */
+note:only-child {
+    display: flex;
+    justify-content: flex-start;
+}
+
+/* 如果有多个note元素，最后一个note右对齐 */
+note:last-child:not(:only-child) {
+    display: flex;
+    justify-content: flex-end;
+}
+
+note[nd="4"] {
+    flex: 25%;
+}
+
+note[nd="8"] {
+    flex: 12.5%;
+}
+
+note[nd="8"]::after {
+    content: "";
+    width: 100%;
+    border-top: 1px solid black;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    color: #000000;
+    z-index: 1;
+}
+
+note[nd="16"] {
+    flex: 6.25%;
+}
+
+note[nd="16"]::after {
+    content: "";
+    height: 2px;
+    width: 100%;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    color: #000000;
+    z-index: 1;
+}
+
+note>num {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 八度黑点 */
+note[oct="1"]>num::after {
+    content: "\2022";
+    font-size: larger;
+    writing-mode: vertical-rl; /* 从上到下的垂直书写模式 */
+    text-orientation: upright; /* 保持文本竖直方向上的正立 */
+    white-space: nowrap; /* 防止文本换行 */
+    position: absolute;
+    bottom: 100%;
+}
+
+note[oct="2"]>num::after {
+    content: "\2022\2022";
+    font-size: larger;
+    letter-spacing: -7px;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    white-space: nowrap;
+    position: absolute;
+    bottom: 100%;
+}
+
+
+note[oct="-1"]>num::after {
+    content: "\2022";
+    font-size: larger;
+    writing-mode: vertical-rl; /* 从上到下的垂直书写模式 */
+    text-orientation: upright; /* 保持文本竖直方向上的正立 */
+    white-space: nowrap; /* 防止文本换行 */
+    position: absolute;
+    top: 100%;
+}
+
+note[oct="-2"]>num::after {
+    content: "\2022\2022";
+    font-size: larger;
+    letter-spacing: -7px;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    white-space: nowrap;
+    position: absolute;
+    top: 100%;
+}
+
+num:empty {
+    width: 100%;
+}
+
+num:empty::before {
+    content: "0";
+    color: #ffffff00;
+}
+
+num:empty::after {
+    content: "";
+    width: 50%;
+    border-top: 2px solid black;
+    position: absolute;
+    left: 10%;
+    top: 50%;
+    color: #000000;
+    z-index: 1;
+}
+
+repeat[type="left"]{
+    position: absolute;
+    height: 100%;
+    width: 2px;
+    top: 0;
+    right: 0;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+}
+
+repeat[type="left"]::after {
+    content: ":";
+    position: absolute;
+    top: 10%;
+    right: 5px;
+    color: #000000;
+    z-index: 1;
+}
+
+
+bar[volta="0"]::after {
+    content: "";
+    width: calc(100% + 1px);
+    height: 50%;
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+    border-right: 1px solid black;
+    position: absolute;
+    top: -70%;
+    left: -1px;
+    color: #000000;
+    z-index: 1;
+}
+
+bar[volta="0"][open="l"]::after {
+    border-left: 1px solid rgba(255, 255, 255, 0);
+}
+
+bar[volta="0"][open="r"]::after {
+    border-right: 1px solid rgba(255, 255, 255, 0);
+}
+
+bar[volta="0"][open="lr"]::after {
+    border-left: 1px solid rgba(255, 255, 255, 0);
+    border-right: 1px solid rgba(255, 255, 255, 0);
+}
+
+
+bar[volta="1"]::after {
+    content: "1.";
+    font-size: smaller;
+    font-weight: lighter;
+    font-style: italic;
+    padding-left: 4%;
+    width: calc(96% + 1px);
+    height: 50%;
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+    border-right: 1px solid black;
+    position: absolute;
+    top: -70%;
+    left: -1px;
+    color: #000000;
+    z-index: 1;
+}
+
+bar[volta="1"][open="l"]::after {
+    border-left: 1px solid rgba(255, 255, 255, 0);
+}
+
+bar[volta="1"][open="r"]::after {
+    border-right: 1px solid rgba(255, 255, 255, 0);
+}
+
+bar[volta="1"][open="lr"]::after {
+    border-left: 1px solid rgba(255, 255, 255, 0);
+    border-right: 1px solid rgba(255, 255, 255, 0);
+}
+
+
+bar[volta="2"]::after {
+    content: "2.";
+    font-size: smaller;
+    font-weight: lighter;
+    font-style: italic;
+    padding-left: 4%;
+    width: calc(96% + 1px);
+    height: 50%;
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+    border-right: 1px solid black;
+    position: absolute;
+    top: -70%;
+    left: -1px;
+    color: #000000;
+    z-index: 1;
+}
+
+bar[volta="2"][open="l"]::after {
+    border-left: 1px solid rgba(255, 255, 255, 0);
+}
+
+bar[volta="2"][open="r"]::after {
+    border-right: 1px solid rgba(255, 255, 255, 0);
+}
+
+bar[volta="2"][open="lr"]::after {
+    border-left: 1px solid rgba(255, 255, 255, 0);
+    border-right: 1px solid rgba(255, 255, 255, 0);
+}
+
+bar[type="text"] {
+    font-weight: 400;
+}
+
+barline[type="dobule"] {
+    position: absolute;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    border-left: 1px solid black;
+}
+
+floattext {
+    text-align: center;
+    font-size: smaller;
+    font-style: italic;
+    position: absolute;
+    right: -50%;
+    width: 100%;
+    top: 100%;
+}

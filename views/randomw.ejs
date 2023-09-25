@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <title>随机干员</title>
+    <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" />
+    <link rel="stylesheet" type="text/css" href="/public/style.css">
+    <link rel="stylesheet" type="text/css" href="/public/header.css">
+    <link rel="stylesheet" type="text/css" href="/public/animeindex.css">
+    <link rel="stylesheet" type="text/css" href="/public/randomw.css">
+    <script src="/public/jquery-3.6.0.min.js"></script>
+</head>
+
+<body class="mdui-theme-primary-pink">
+    <header mdui-headroom>
+        <div class="left">
+            <a id="home-btn" href="/">欢迎</a>
+        </div>
+        <div>
+            明日方舟 随机干员小工具
+        </div>
+        <div></div>
+    </header>
+    <section class="main-content mdui-container" style="padding-top: 60px;">
+        <div class="mdui-card">
+            <div class="mdui-card-media mdui-valign">
+                <ul class="mdui-list mdui-center" id="ul" style="width: 90%;padding-top: 20px;">
+                </ul>
+            </div>
+            <div class="mdui-card-primary">
+                <div class="mdui-card-primary-subtitle">随机干员的数量: </div>
+                <label class="mdui-slider mdui-slider-discrete">
+                    <input type="range" step="1" min="1" max="10" value="3" id="l" />
+                </label>
+            </div>
+            <div class="mdui-card-actions" style="display: flex;">
+                <button class="mdui-btn mdui-ripple mdui-float-right" style="flex: 1;" id="r-btn">随机3个!</button>
+            </div>
+            <div class="mdui-progress mdui-hidden" id="progress">
+                <div class="mdui-progress-indeterminate"></div>
+            </div>
+        </div>
+    </section>
+    <script src="/public/randomw.js"></script>
+    <script src="/public/mdui.min.js"></script>
+</body>
+
+</html>

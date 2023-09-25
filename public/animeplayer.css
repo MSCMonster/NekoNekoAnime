@@ -1,0 +1,144 @@
+button.ep-btn {
+    color: #06C;
+    background-color: #cde1fc;
+    border: 1px solid #00A8FF;
+    position: relative;
+    padding: 8px 15px;
+    margin-left: 5px;
+    border-radius: 5px;
+    transition: background-color 0.15s ease;
+    cursor: pointer;
+}
+button.ep-btn.unshow {
+    color: rgb(148, 148, 148);
+    background-color: #c7c7c7;
+    border: 1px solid #464646;
+    position: relative;
+    padding: 8px 15px;
+    margin-left: 5px;
+    border-radius: 5px;
+    transition: background-color 0.15s ease;
+    cursor: pointer;
+}
+
+button.played {
+    color: #FFF;
+    background-color: #4897ff;
+    border: 1px solid #1175a8;
+}
+
+button:hover.ep-btn {
+    background-color: #d8e6f8;
+}
+
+button:hover.alias-btn {
+    background-color: #cde1fc;
+}
+
+button:hover.played {
+    background-color: #5ba1fc;
+}
+
+.sk-bangumi div.data-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+div#comments-box {
+    display: flex;
+    flex: 1;
+}
+
+.comment-box {
+    width: 70%;
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0 35px 0 35px;
+    padding: 5px 10px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -moz-background-clip: padding;
+    background-clip: padding-box;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.05);
+    color: #555;
+    background-color: #FFF;
+    border: 1px solid #e8e8e8;
+    transition: opacity 0.5s ease-out;
+}
+
+.comment-box:not(.deleted) {
+    opacity: 1;
+}
+
+.text_main_even {
+    margin: 0;
+    padding: 1vh;
+    position: relative;
+    transition: height 0.5s ease;
+}
+
+.text_main_even.deleted {
+    opacity: 0;
+    height: 0;
+    padding: 0;
+    margin: 0;
+    border: none;
+    overflow: hidden;
+}
+
+
+/* 删除动画状态，评论透明 */
+.comment-box.deleted {
+    opacity: 0;
+}
+
+.text-left {
+    display: flex;
+    flex-direction: row;
+}
+
+.text-right {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.delete-button {
+    background-color: #fd6363;
+    /* 设置背景颜色 */
+    color: #ffffff;
+    /* 设置文字颜色 */
+    padding: 2px 8px;
+    margin: 0px 0px 0px 20px;
+    border: none;
+    /* 去除边框 */
+    border-radius: 4px;
+    /* 添加圆角 */
+    font-size: 16px;
+    /* 设置文字大小 */
+}
+
+.delete-button:hover {
+    background-color: #ff7c7c;
+    /* 鼠标悬停时的背景颜色 */
+}
+
+.delete-button .fas {
+    margin-right: 8px;
+    /* 调整图标和文字之间的间距 */
+}
+
+div#add-alias-box {
+    display: flex;
+    align-items: center;
+}
+
+input#alias-input {
+    flex: 1;
+}
+
+#update-alias-btn {
+    margin-left: 10px;
+}

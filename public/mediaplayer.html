@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>直播间</title>
+    <style>
+        body {
+            background-color: #FFD9E3;
+            /* 浅粉色背景色 */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+
+        #myVideo {
+            width: 70%;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+
+<body>
+    <video id="myVideo" controls autoplay muted volume="1.0"></video>
+    <script src="https://cdn.jsdelivr.net/npm/flv.js@1.5.0/dist/flv.min.js"></script>
+    <script>
+        const videoElement = document.getElementById('myVideo');
+        const flvPlayer = flvjs.createPlayer({
+            type: 'flv',
+            // url: 'http://localhost:8000/live/password.flv', // Replace with your stream URL
+            url: 'https://nekoneko.site:44843/live/xz.flv', // Replace with your stream URL
+        });
+        flvPlayer.attachMediaElement(videoElement);
+        flvPlayer.load();
+    </script>
+</body>
+
+</html>

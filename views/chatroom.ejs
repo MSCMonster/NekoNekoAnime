@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <title>聊天室</title>
+    <link rel="stylesheet" type="text/css" href="/public/style.css">
+    <link rel="stylesheet" type="text/css" href="/public/header.css">
+</head>
+
+<body>
+    <header>
+        <div class="left">
+            <a id="home-btn" href="/">欢迎！<%= nickname %></a>
+        </div>
+        <div id="online-count">当前在线: N/A 人</div>
+        <div id="latency">延迟: N/A ms</div>
+        <div id='logout-btn' class="right header-btn">
+          <a href="/logout">登出</a>
+        </div>
+    </header>
+    <div id="main">
+        <div id="container">
+            <div id="chat-log"></div>
+            <div id="input-container">
+                <textarea type="text" id="message" placeholder="消息"></textarea>
+                <button id="send-btn">biu~</button>
+            </div>
+        </div>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="/public/main.js"></script>
+    </div>
+</body>
+
+</html>

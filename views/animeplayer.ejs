@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <title id="web-title">动漫小站</title>
+    <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" />
+    <link rel="stylesheet" type="text/css" href="/public/style.css">
+    <link rel="stylesheet" type="text/css" href="/public/header.css">
+    <link rel="stylesheet" type="text/css" href="/public/animeindex.css">
+    <link rel="stylesheet" type="text/css" href="/public/animeplayer.css">
+    <link rel="stylesheet" type="text/css" href="/public/plyr_3.7.8.css">
+    <script src="/public/plyr_3.7.8.js"></script>
+    <script src="/public/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <header mdui-headroom class="mdui-shadow-3 mdui-img-rounded">
+        <div class="left">
+            <a id="home-btn" href="/animeindex">欢迎！<%= nickname %></a>
+        </div>
+        <div><span id="animename" style="font-weight: 600;">加载中..</span></div>
+        <div id='logout-btn' class="right header-btn">
+            <a href="/logout">登出</a>
+        </div>
+    </header>
+    <section class="main-content mdui-container mdui-panel" style="padding-top: 60px;" mdui-panel>
+        <div id="video-player" class="mdui-video-container mdui-shadow-3 mdui-img-rounded">
+            <video poster="" controls>
+                <source src="" type="video/mp4">
+            </video>
+        </div>
+        <div id="eps" class="sk-bangumi mdui-panel-item mdui-panel-item-open">
+            <div class="data-row mdui-panel-item-header row">
+                <span class="row-title mdui-panel-item-title">选集</span>
+                <i class="mdui-panel-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+            </div>
+            <div id="episodes" class="mdui-panel-item-body"></div>
+        </div>
+        <div id="eps-dwn" class="sk-bangumi mdui-panel-item">
+            <div class="data-row mdui-panel-item-header row">
+                <span class="row-title mdui-panel-item-title">下载</span>
+                <i class="mdui-panel-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+            </div>
+            <div id="episodes-download" class="mdui-panel-item-body"></div>
+        </div>
+        <% if (perm>= 9000) { %>
+            <div id="eps-del" class="sk-bangumi mdui-panel-item">
+                <div class="data-row mdui-panel-item-header row">
+                    <span class="row-title mdui-panel-item-title">管理</span>
+                    <i class="mdui-panel-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+                </div>
+                <div id="episodes-delete" class="mdui-panel-item-body"></div>
+            </div>
+        <% } %>
+        <% if (perm >= 9000) { %>
+            <div class="mdui-panel" mdui-panel>
+                <div id="update-box" class="sk-bangumi mdui-panel-item" style="padding-top: 15px;">
+                    <div class="data-row mdui-panel-item-header row">
+                        <p class="row-title mdui-panel-item-title">
+                            <span style="padding: 0px 5px 0 5px;">全部种子</span>
+                        </p>
+                        <i class="mdui-panel-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+                    </div>
+                    <div class="mdui-panel-item-body">
+                        <div class="mdui-textfield">
+                            <textarea id="reg-input" class="mdui-textfield-input" placeholder="种子正则表达式"></textarea>
+                        </div>
+                        <div class="mdui-col" style="padding-bottom: 5px;">
+                            <button id="search-torrent-btn"
+                                class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-blue-200 mdui-btn-block">更新</button>
+                        </div>
+                        <div class="mdui-table-fluid">
+                            <table class="mdui-table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>File Name</th>
+                                        <th>State</th>
+                                        <th>Progress</th>
+                                        <th>Add</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="search-torrent-tbody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <% } %>
+        <div id="alias-box" class="sk-bangumi mdui-panel-item">
+            <div class="data-row mdui-panel-item-header row">
+                <div class="row-title mdui-panel-item-title">别称</div>
+                <i class="mdui-panel-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+            </div>
+            <div class="mdui-panel-item-body">
+                <div style="display: flex; align-items: center;">
+                    <% if (perm>= 10) { %>
+                        <div id="add-alias-box" class="mdui-textfield mdui-textfield-floating-label"
+                            style="width: 100%;">
+                            <input id="alias-input" class="search-input mdui-textfield-input" name="search" type="text"
+                                placeholder="别称..." maxlength="999">
+                            <button id="add-alias-btn" class="header-btn btn" type="submit">添加别称</button>
+                        </div>
+                    <% } %>
+                    <% if (perm>=9000) { %>
+                        <button id="update-alias-btn"
+                            class="mdui-btn mdui-btn-raised mdui-color-blue-100 mdui-ripple" type="button"
+                            style="flex:1;">
+                            <i class="mdui-icon material-icons">&#xe5d5;</i>
+                        </button>
+                    <% } %>
+                </div>
+                <div id="alias"></div>
+            </div>
+        </div>
+        <div id="comment-box" class="sk-bangumi mdui-panel-item">
+            <div class="data-row mdui-panel-item-header row">
+                <div class="row-title  mdui-panel-item-title">吐槽箱</div>
+                <i class="mdui-panel-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+            </div>
+            <div class="mdui-panel-item-body">
+                <div id="comments-box" class="mdui-textfield mdui-textfield-floating-label">
+                    <textarea id="comment-input" class="search-input mdui-textfield-input" name="search" type="text"
+                        placeholder="吐槽..." maxlength="9999"></textarea>
+                    <button id="add-comment-btn" class="header-btn btn" type="submit">发表吐槽</button>
+                </div>
+                <div id="comments"></div>
+            </div>
+        </div>
+        <div id="tg-box" class="sk-bangumi mdui-panel-item">
+            <div class="data-row mdui-panel-item-header row">
+                <div class="row-title  mdui-panel-item-title">一起看</div>
+                <i class="mdui-panel-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+            </div>
+            <div class="mdui-panel-item-body">
+                <div class="mdui-textfield">
+                    <label class="mdui-textfield-label">房间号</label>
+                    <input id="tg-id-input" class="mdui-textfield-input" type="text" value="1234"/>
+                </div>
+                <div class="mdui-col" style="padding-bottom: 5px;">
+                    <button id="tg-link-btn"
+                        class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-blue-200 mdui-btn-block">连接</button>
+                </div>
+                <ul class="mdui-list">
+                    <li class="mdui-list-item mdui-ripple">
+                        <span>连接状态:</span>
+                        <span id="tg-info-type">未连接</span>
+                    </li>
+                    <li class="mdui-list-item mdui-ripple">
+                        <span>延迟:</span>
+                        <span id="tg-info-offset">?</span>
+                        <span>ms</span>
+                    </li>
+                    <li class="mdui-list-item mdui-ripple">
+                        <span>人数:</span>
+                        <span id="tg-info-count">?</span>
+                        <span>人</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <script src="/public/animeplayer.js"></script>
+    <% if (perm>= 11) { %>
+        <style>
+            button:hover.alias-btn {
+                background-color: #ff3333;
+                color: #ffffff;
+            }
+        </style>
+        <% } %>
+            <script src="/public/mdui.min.js"></script>
+</body>
+
+</html>

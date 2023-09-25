@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <title>动漫小站控制台</title>
+    <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" />
+    <link rel="stylesheet" type="text/css" href="/public/style.css">
+    <link rel="stylesheet" type="text/css" href="/public/header.css">
+    <link rel="stylesheet" type="text/css" href="/public/animeindex.css">
+    <link rel="stylesheet" type="text/css" href="/public/animeconsole.css">
+    <script src="/public/jquery-3.6.0.min.js"></script>
+</head>
+
+<body class="mdui-theme-primary-pink">
+    <div style="position: fixed; top: 0; left: 0; right: 0;z-index: 98;">
+        <div id="update-prog" class="mdui-progress mdui-invisible" style="z-index: 100;">
+            <div class="mdui-progress-indeterminate"></div>
+        </div>
+        <header>
+            <div class="left">
+                <a id="home-btn" href="/">欢迎！<%= nickname %></a>
+            </div>
+            <div id='logout-btn' class="right header-btn">
+                <a href="/logout">
+                    <i class="mdui-icon material-icons">&#xe879;</i>
+                </a>
+            </div>
+        </header>
+    </div>
+    <section class="main-content mdui-container" style="padding-top: 45px;">
+        <div class="mdui-panel" mdui-panel>
+            <div id="update-box" class="sk-bangumi mdui-panel-item mdui-panel-item-open" style="padding-top: 15px;">
+                <div class="data-row mdui-panel-item-header row">
+                    <p class="row-title mdui-panel-item-title">
+                        <span style="padding: 0px 5px 0 5px;">添加动漫</span>
+                    </p>
+                    <i class="mdui-panel-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+                </div>
+                <div class="mdui-panel-item-body">
+                    <div class="mdui-textfield">
+                        <input id="search-anime-input" class="mdui-textfield-input" type="text" placeholder="关键字" />
+                    </div>
+                    <div class="mdui-table-fluid">
+                        <table class="mdui-table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Anime Name</th>
+                                    <th>Mikan ID</th>
+                                    <th>Add</th>
+                                </tr>
+                            </thead>
+                            <tbody id="search-anime-tbody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mdui-panel" mdui-panel>
+            <div id="update-box" class="sk-bangumi mdui-panel-item mdui-panel-item-open" style="padding-top: 15px;">
+                <div class="data-row mdui-panel-item-header row">
+                    <p class="row-title mdui-panel-item-title">
+                        <span style="padding: 0px 5px 0 5px;">查看全部未绑定字幕组的动漫</span>
+                    </p>
+                    <i class="mdui-panel-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+                </div>
+                <div class="mdui-panel-item-body">
+                    <div class="mdui-col" style="padding-bottom: 5px;">
+                        <button id="bind-stg-btn"
+                            class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-blue-200 mdui-btn-block">更新</button>
+                    </div>
+                    <div class="mdui-table-fluid">
+                        <table class="mdui-table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Anime Name</th>
+                                    <th>Mikan ID</th>
+                                    <th>View</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody id="bind-stg-body"></tbody>
+                        </table>
+                    </div>
+                    <div id="anime-stg-div" class="mdui-table-fluid mdui-hidden">
+                        <table class="mdui-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Files</th>
+                                    <th>Bind</th>
+                                </tr>
+                            </thead>
+                            <tbody id="anime-stg-body"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mdui-panel" mdui-panel>
+            <div id="update-box" class="sk-bangumi mdui-panel-item mdui-panel-item-open" style="padding-top: 15px;">
+                <div class="data-row mdui-panel-item-header row">
+                    <p class="row-title mdui-panel-item-title">
+                        <span style="padding: 0px 5px 0 5px;">查看全部未绑定种子正则的动漫</span>
+                    </p>
+                    <i class="mdui-panel-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+                </div>
+                <div class="mdui-panel-item-body">
+                    <div class="mdui-col" style="padding-bottom: 5px;">
+                        <button id="bind-bre-btn"
+                            class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-blue-200 mdui-btn-block">更新</button>
+                    </div>
+                    <div class="mdui-table-fluid">
+                        <table class="mdui-table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Anime Name</th>
+                                    <th>Regular</th>
+                                    <th>Execute</th>
+                                </tr>
+                            </thead>
+                            <tbody id="search-bre-tbody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mdui-panel" mdui-panel>
+            <div id="update-box" class="sk-bangumi mdui-panel-item mdui-panel-item-open" style="padding-top: 15px;">
+                <div class="data-row mdui-panel-item-header row">
+                    <p class="row-title mdui-panel-item-title">
+                        <span style="padding: 0px 5px 0 5px;">更新一部动漫的种子</span>
+                    </p>
+                    <i class="mdui-panel-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+                </div>
+                <div class="mdui-panel-item-body">
+                    <div class="mdui-textfield">
+                        <input id="update-animetor-input" class="mdui-textfield-input" type="text" placeholder="id" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mdui-panel" mdui-panel>
+            <div id="update-box" class="sk-bangumi mdui-panel-item mdui-panel-item-open" style="padding-top: 15px;">
+                <div class="data-row mdui-panel-item-header row">
+                    <p class="row-title mdui-panel-item-title">
+                        <span style="padding: 0px 5px 0 5px;">开始下载未下载的种子</span>
+                    </p>
+                    <i class="mdui-panel-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+                </div>
+                <div class="mdui-panel-item-body">
+                    <div class="mdui-col" style="padding-bottom: 5px;">
+                        <button id="start-dwn-btn"
+                            class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-blue-200 mdui-btn-block">开始下载</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mdui-panel" mdui-panel>
+            <div id="update-box" class="sk-bangumi mdui-panel-item mdui-panel-item-open" style="padding-top: 15px;">
+                <div class="data-row mdui-panel-item-header row">
+                    <p class="row-title mdui-panel-item-title">
+                        <span style="padding: 0px 5px 0 5px;">更新种子下载进度</span>
+                    </p>
+                    <i class="mdui-panel-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+                </div>
+                <div class="mdui-panel-item-body">
+                    <div class="mdui-col" style="padding-bottom: 5px;">
+                        <button id="update-tor-btn"
+                            class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-blue-200 mdui-btn-block">开始更新</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mdui-panel" mdui-panel>
+            <div id="update-box" class="sk-bangumi mdui-panel-item mdui-panel-item-open" style="padding-top: 15px;">
+                <div class="data-row mdui-panel-item-header row">
+                    <p class="row-title mdui-panel-item-title">
+                        <span style="padding: 0px 5px 0 5px;">更新文件</span>
+                    </p>
+                    <i class="mdui-panel-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+                </div>
+                <div class="mdui-panel-item-body">
+                    <div class="mdui-col" style="padding-bottom: 5px;">
+                        <button id="update-file-btn"
+                            class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-blue-200 mdui-btn-block">开始更新</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="/public/animeconsole.js"></script>
+    <script src="/public/mdui.min.js"></script>
+</body>
+
+</html>

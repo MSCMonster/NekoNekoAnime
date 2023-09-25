@@ -1,0 +1,108 @@
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    display: none;
+}
+
+#popup {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 80%;
+    min-width: 70%;
+    height: 70%;
+    background-color: #f0f6fa;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+}
+
+#close {
+    position: absolute;
+    top: 0px;
+    right: 7px;
+    font-size: 30px;
+    /* font-weight: bold; */
+    cursor: pointer;
+}
+
+#content {
+    margin: 2%;
+    height: 90%;
+    overflow-y: scroll;
+    word-wrap: break-word;
+}
+
+#content-box {
+    margin-top: 10px;
+    height: 82%;
+    overflow-y: scroll;
+    word-wrap: break-word;
+}
+
+
+.button-container {
+    padding-top: 5%;
+    height: 20%;
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+    align-items: center;
+}
+
+.lay-btn {
+    margin-right: 10px;
+    max-height: 50px;
+}
+
+
+.center {
+    text-align: center;
+}
+
+.tr-btn {
+    margin: 3px 0;
+}
+
+#content {
+    font-size: larger;
+}
+
+/* 列表各项的宽度限制 */
+.td-userid {
+    width: 160px;
+}
+
+.td-name {
+    width: 120px;
+}
+
+.td-gender {
+    width: 20px;
+}
+
+.td-idnumber {
+    width: 200px;
+}
+
+.td-phonenumber {
+    width: 200px;
+}
+
+.td-address {
+    max-width: 360px;
+}
+
+.td-type {
+    width: 50px;
+}
+
+

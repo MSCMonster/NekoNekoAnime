@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <title>注册</title>
+    <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css"/>
+    <link rel="stylesheet" type="text/css" href="public/auth.css"/>
+</head>
+
+<body>
+    <div class="container">
+        <h1>注册</h1>
+        <div id="tips"></div>
+        <form action="/register" method="POST">
+            <input type="text" name="nickname" placeholder="昵称" required>
+            <br>
+            <input type="text" name="username" placeholder="用户名" required>
+            <br>
+            <input type="password" name="password" placeholder="密码" required>
+            <br>
+            <button id="register-btn" class="mdui-btn-raised mdui-ripple" type="submit">注册</button>
+        </form>
+        <p>已经有账号了? <a href="/login">登录</a></p>
+    </div>
+    <script>
+        // 获取提示元素
+        const tipsElement = document.getElementById('tips');
+
+        // 从URL参数中获取消息
+        const urlParams = new URLSearchParams(window.location.search);
+        const message = urlParams.get('message');
+
+        // 显示提示消息
+        if (message) {
+            tipsElement.textContent = message;
+            tipsElement.style.color = 'red';
+        }
+    </script>
+    <script src="/public/mdui.min.js"></script>
+</body>
+
+</html>

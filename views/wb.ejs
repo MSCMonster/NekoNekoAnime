@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <title><%= data.姓名 %>: <%= data.保单号 %></title>
+    <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" />
+    <link rel="stylesheet" type="text/css" href="/public/style.css">
+    <link rel="stylesheet" type="text/css" href="/public/wu.css">
+    <script src="/public/jquery-3.6.0.min.js"></script>
+</head>
+
+<body class="mdui-theme-primary-pink" style="padding-top: 65px;" mdui-collapse="{accordion: false}">
+    <header class="mdui-appbar mdui-appbar-fixed">
+        <div class="mdui-toolbar mdui-color-theme">
+            <span class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white">
+                <i class="mdui-icon material-icons">menu</i>
+            </span>
+            <span class="mdui-typo-headline mdui-hidden-xs">
+                <%= data.state == 'ok' ? data.姓名 + data.保单号 : '查询失败' %>
+            </span>
+        </div>
+    </header>
+    <section class="main-content mdui-container mdui-collapse-item mdui-collapse-item-open mdui-shadow-3">
+        <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+            <i class="mdui-list-item-icon mdui-icon material-icons">assignment</i>
+            <div class="mdui-list-item-content">基本信息</div>
+            <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+        </div>
+        <div class="content-list mdui-collapse-item-body">
+            <div class="list-box">
+                <ul class="mdui-list">
+                    <li class="mdui-list-item mdui-ripple">
+                        <i class="mdui-list-item-icon mdui-icon material-icons">assignment</i>
+                        <div class="mdui-list-item-content list-item-title">保单号</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['保单号'] ? data['保单号'] : '' %>
+                        </div>
+                    </li>
+
+                    <li class="mdui-list-item mdui-ripple">
+                        <i class="mdui-list-item-icon mdui-icon material-icons">account_balance</i>
+                        <div class="mdui-list-item-content list-item-title">销售机构</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['销售机构'] ? data['销售机构'] : '' %>
+                        </div>
+                    </li>
+                    <li class="mdui-list-item mdui-ripple">
+                        <i class="mdui-list-item-icon mdui-icon material-icons">today</i>
+                        <div class="mdui-list-item-content list-item-title">投保日期</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['投保日期'] ? data['投保日期'] : '' %>
+                        </div>
+                    </li>
+                    <li class="mdui-list-item mdui-ripple">
+                        <i class="mdui-list-item-icon mdui-icon material-icons">check_circle</i>
+                        <div class="mdui-list-item-content list-item-title">保单状态</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['保单状态'] ? data['保单状态'] : '' %>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="list-box">
+                <ul class="mdui-list">
+                    <li class="mdui-list-item mdui-ripple">
+                        <i class="mdui-list-item-icon mdui-icon material-icons">directions_run</i>
+                        <div class="mdui-list-item-content list-item-title">销售人员</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['销售人员'] ? data['销售人员'] : '' %>
+                        </div>
+                    </li>
+                    <li class="mdui-list-item mdui-ripple">
+                        <i class="mdui-list-item-icon mdui-icon material-icons">directions_walk</i>
+                        <div class="mdui-list-item-content list-item-title">服务人员</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['服务人员'] ? data['服务人员'] : '' %>
+                        </div>
+                    </li>
+                    <li class="mdui-list-item mdui-ripple">
+                        <i class="mdui-list-item-icon mdui-icon material-icons">chrome_reader_mode</i>
+                        <div class="mdui-list-item-content list-item-title">转型保单标识</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['转型保单标识'] ? data['转型保单标识'] : '' %>
+                        </div>
+                    </li>
+                    <li class="mdui-list-item mdui-ripple">
+                        <i class="mdui-list-item-icon mdui-icon material-icons">attach_money</i>
+                        <div class="mdui-list-item-content list-item-title">账户余额</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['账户余额'] ? data['账户余额'] : '' %>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section class="main-content mdui-container mdui-collapse-item mdui-shadow-3">
+        <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+            <i class="mdui-list-item-icon mdui-icon material-icons">more</i>
+            <div class="mdui-list-item-content">更多信息</div>
+            <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+        </div>
+        <div class="content-list mdui-collapse-item-body">
+            <div class="list-box">
+                <ul class="mdui-list">
+                    <li class="mdui-list-item mdui-ripple">
+                        <div class="mdui-list-item-content list-item-title">投保单号</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['投保单号'] ? data['投保单号'] : '' %>
+                        </div>
+                    </li>
+                    <li class="mdui-list-item mdui-ripple">
+                        <div class="mdui-list-item-content list-item-title">服务人员渠道部门</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['服务人员渠道部门'] ? data['服务人员渠道部门'] : '' %>
+                        </div>
+                    </li>
+                <ul class="mdui-list">
+                    <li class="mdui-list-item mdui-ripple">
+                        <div class="mdui-list-item-content list-item-title">保单管理机构</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['保单管理机构'] ? data['保单管理机构'] : '' %>
+                        </div>
+                    </li>
+                <ul class="mdui-list">
+                    <li class="mdui-list-item mdui-ripple">
+                        <div class="mdui-list-item-content list-item-title">保单管理机构地址</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['保单管理机构地址'] ? data['保单管理机构地址'] : '' %>
+                        </div>
+                    </li>
+                <ul class="mdui-list">
+                    <li class="mdui-list-item mdui-ripple">
+                        <div class="mdui-list-item-content list-item-title">销售人员渠道部门</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['销售人员渠道部门'] ? data['销售人员渠道部门'] : '' %>
+                        </div>
+                    </li>
+                <ul class="mdui-list">
+                    <li class="mdui-list-item mdui-ripple">
+                        <div class="mdui-list-item-content list-item-title">出单渠道</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['出单渠道'] ? data['出单渠道'] : '' %>
+                        </div>
+                    </li>
+                <ul class="mdui-list">
+                    <li class="mdui-list-item mdui-ripple">
+                        <div class="mdui-list-item-content list-item-title">回执签收日期</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['回执签收日期'] ? data['回执签收日期'] : '' %>
+                        </div>
+                    </li>
+                <ul class="mdui-list">
+                    <li class="mdui-list-item mdui-ripple">
+                        <div class="mdui-list-item-content list-item-title">是否孤儿单</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['是否孤儿单'] ? data['是否孤儿单'] : '' %>
+                        </div>
+                    </li>
+                <ul class="mdui-list">
+                    <li class="mdui-list-item mdui-ripple">
+                        <div class="mdui-list-item-content list-item-title">医保标识</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['医保标识'] ? data['医保标识'] : '' %>
+                        </div>
+                    </li>
+                <ul class="mdui-list">
+                    <li class="mdui-list-item mdui-ripple">
+                        <div class="mdui-list-item-content list-item-title">转型保单标识</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['转型保单标识'] ? data['转型保单标识'] : '' %>
+                        </div>
+                    </li>
+                <ul class="mdui-list">
+                    <li class="mdui-list-item mdui-ripple">
+                        <div class="mdui-list-item-content list-item-title">双录标记</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['双录标记'] ? data['双录标记'] : '' %>
+                        </div>
+                    </li>
+                <ul class="mdui-list">
+                    <li class="mdui-list-item mdui-ripple">
+                        <div class="mdui-list-item-content list-item-title">保单类型(最新)</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['保单类型(最新)'] ? data['保单类型(最新)'] : '' %>
+                        </div>
+                    </li>
+                <ul class="mdui-list">
+                    <li class="mdui-list-item mdui-ripple">
+                        <div class="mdui-list-item-content list-item-title">新契约出单形式</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['新契约出单形式'] ? data['新契约出单形式'] : '' %>
+                        </div>
+                    </li>
+                <ul class="mdui-list">
+                    <li class="mdui-list-item mdui-ripple">
+                        <div class="mdui-list-item-content list-item-title">机构签收日期</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['机构签收日期'] ? data['机构签收日期'] : '' %>
+                        </div>
+                    </li>
+                <ul class="mdui-list">
+                    <li class="mdui-list-item mdui-ripple">
+                        <div class="mdui-list-item-content list-item-title">电子保单发送日期</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['电子保单发送日期'] ? data['电子保单发送日期'] : '' %>
+                        </div>
+                    </li>
+                <ul class="mdui-list">
+                    <li class="mdui-list-item mdui-ripple">
+                        <div class="mdui-list-item-content list-item-title">保单打印日期</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['保单打印日期'] ? data['保单打印日期'] : '' %>
+                        </div>
+                    </li>
+                <ul class="mdui-list">
+                    <li class="mdui-list-item mdui-ripple">
+                        <div class="mdui-list-item-content list-item-title">回执回销日期</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['回执回销日期'] ? data['回执回销日期'] : '' %>
+                        </div>
+                    </li>
+                <ul class="mdui-list">
+                    <li class="mdui-list-item mdui-ripple">
+                        <div class="mdui-list-item-content list-item-title">电子邮箱</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['电子邮箱'] ? data['电子邮箱'] : '' %>
+                        </div>
+                    </li>
+                <ul class="mdui-list">
+                    <li class="mdui-list-item mdui-ripple">
+                        <div class="mdui-list-item-content list-item-title">电子保单纸质回执签收日期</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['电子保单纸质回执签收日期'] ? data['电子保单纸质回执签收日期'] : '' %>
+                        </div>
+                    </li>
+                <ul class="mdui-list">
+                    <li class="mdui-list-item mdui-ripple">
+                        <div class="mdui-list-item-content list-item-title">投保时预约回访时间</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['投保时预约回访时间'] ? data['投保时预约回访时间'] : '' %>
+                        </div>
+                    </li>
+                <ul class="mdui-list">
+                    <li class="mdui-list-item mdui-ripple">
+                        <div class="mdui-list-item-content list-item-title">回访时间+回访结果</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['回访时间+回访结果'] ? data['回访时间+回访结果'] : '' %>
+                        </div>
+                    </li>
+                <ul class="mdui-list">
+                    <li class="mdui-list-item mdui-ripple">
+                        <div class="mdui-list-item-content list-item-title">是否完成回访</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['是否完成回访'] ? data['是否完成回访'] : '' %>
+                        </div>
+                    </li>
+                <ul class="mdui-list">
+                    <li class="mdui-list-item mdui-ripple">
+                        <div class="mdui-list-item-content list-item-title">电子函件服务</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['电子函件服务'] ? data['电子函件服务'] : '' %>
+                        </div>
+                    </li>
+                <ul class="mdui-list">
+                    <li class="mdui-list-item mdui-ripple">
+                        <div class="mdui-list-item-content list-item-title">代理银行</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['代理银行'] ? data['代理银行'] : '' %>
+                        </div>
+                    </li>
+                <ul class="mdui-list">
+                    <li class="mdui-list-item mdui-ripple">
+                        <div class="mdui-list-item-content list-item-title">银行网点</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['银行网点'] ? data['银行网点'] : '' %>
+                        </div>
+                    </li>
+                <ul class="mdui-list">
+                    <li class="mdui-list-item mdui-ripple">
+                        <div class="mdui-list-item-content list-item-title">投保资料电子签单质检状态</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['投保资料电子签单质检状态'] ? data['投保资料电子签单质检状态'] : '' %>
+                        </div>
+                    </li>
+                <ul class="mdui-list">
+                    <li class="mdui-list-item mdui-ripple">
+                        <div class="mdui-list-item-content list-item-title">回执电子签单质检状态</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['回执电子签单质检状态'] ? data['回执电子签单质检状态'] : '' %>
+                        </div>
+                    </li>
+                <ul class="mdui-list">
+                    <li class="mdui-list-item mdui-ripple">
+                        <div class="mdui-list-item-content list-item-title">双录质检状态</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['双录质检状态'] ? data['双录质检状态'] : '' %>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="list-box">
+                <ul class="mdui-list">
+                    <li class="mdui-list-item mdui-ripple">
+                        <div class="mdui-list-item-content list-item-title">销售方式(团队)</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['销售方式(团队)'] ? data['销售方式(团队)'] : '' %>
+                        </div>
+                    </li>
+                <ul class="mdui-list">
+                    <li class="mdui-list-item mdui-ripple">
+                        <div class="mdui-list-item-content list-item-title">中介机构代码</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['中介机构代码'] ? data['中介机构代码'] : '' %>
+                        </div>
+                    </li>
+                <ul class="mdui-list">
+                    <li class="mdui-list-item mdui-ripple">
+                        <div class="mdui-list-item-content list-item-title">中介机构名称</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['中介机构名称'] ? data['中介机构名称'] : '' %>
+                        </div>
+                    </li>
+                <ul class="mdui-list">
+                    <li class="mdui-list-item mdui-ripple">
+                        <div class="mdui-list-item-content list-item-title">协议号</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['协议号'] ? data['协议号'] : '' %>
+                        </div>
+                    </li>
+                <ul class="mdui-list">
+                    <li class="mdui-list-item mdui-ripple">
+                        <div class="mdui-list-item-content list-item-title">续保/转保</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['续保/转保'] ? data['续保/转保'] : '' %>
+                        </div>
+                    </li>
+                <ul class="mdui-list">
+                    <li class="mdui-list-item mdui-ripple">
+                        <div class="mdui-list-item-content list-item-title">原保单号</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['原保单号'] ? data['原保单号'] : '' %>
+                        </div>
+                    </li>
+                <ul class="mdui-list">
+                    <li class="mdui-list-item mdui-ripple">
+                        <div class="mdui-list-item-content list-item-title">信托业务标识</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['信托业务标识'] ? data['信托业务标识'] : '' %>
+                        </div>
+                    </li>
+                <ul class="mdui-list">
+                    <li class="mdui-list-item mdui-ripple">
+                        <div class="mdui-list-item-content list-item-title">第二投保人指定</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['第二投保人指定'] ? data['第二投保人指定'] : '' %>
+                        </div>
+                    </li>
+                <ul class="mdui-list">
+                    <li class="mdui-list-item mdui-ripple">
+                        <div class="mdui-list-item-content list-item-title">专户投保标识</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['专户投保标识'] ? data['专户投保标识'] : '' %>
+                        </div>
+                    </li>
+                <ul class="mdui-list">
+                    <li class="mdui-list-item mdui-ripple">
+                        <div class="mdui-list-item-content list-item-title">承保日期</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['承保日期'] ? data['承保日期'] : '' %>
+                        </div>
+                    </li>
+                <ul class="mdui-list">
+                    <li class="mdui-list-item mdui-ripple">
+                        <div class="mdui-list-item-content list-item-title">生效日期</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['生效日期'] ? data['生效日期'] : '' %>
+                        </div>
+                    </li>
+                <ul class="mdui-list">
+                    <li class="mdui-list-item mdui-ripple">
+                        <div class="mdui-list-item-content list-item-title">缴费终止日期</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['缴费终止日期'] ? data['缴费终止日期'] : '' %>
+                        </div>
+                    </li>
+                <ul class="mdui-list">
+                    <li class="mdui-list-item mdui-ripple">
+                        <div class="mdui-list-item-content list-item-title">保障终止日期</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['保障终止日期'] ? data['保障终止日期'] : '' %>
+                        </div>
+                    </li>
+                <ul class="mdui-list">
+                    <li class="mdui-list-item mdui-ripple">
+                        <div class="mdui-list-item-content list-item-title">保单年度</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['保单年度'] ? data['保单年度'] : '' %>
+                        </div>
+                    </li>
+                <ul class="mdui-list">
+                    <li class="mdui-list-item mdui-ripple">
+                        <div class="mdui-list-item-content list-item-title">缴费年度</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['缴费年度'] ? data['缴费年度'] : '' %>
+                        </div>
+                    </li>
+                <ul class="mdui-list">
+                    <li class="mdui-list-item mdui-ripple">
+                        <div class="mdui-list-item-content list-item-title">续期缴费日期</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['续期缴费日期'] ? data['续期缴费日期'] : '' %>
+                        </div>
+                    </li>
+                <ul class="mdui-list">
+                    <li class="mdui-list-item mdui-ripple">
+                        <div class="mdui-list-item-content list-item-title">终止原因</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['终止原因'] ? data['终止原因'] : '' %>
+                        </div>
+                    </li>
+                <ul class="mdui-list">
+                    <li class="mdui-list-item mdui-ripple">
+                        <div class="mdui-list-item-content list-item-title">终止日期</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['终止日期'] ? data['终止日期'] : '' %>
+                        </div>
+                    </li>
+                <ul class="mdui-list">
+                    <li class="mdui-list-item mdui-ripple">
+                        <div class="mdui-list-item-content list-item-title">预计失效日期</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['预计失效日期'] ? data['预计失效日期'] : '' %>
+                        </div>
+                    </li>
+                <ul class="mdui-list">
+                    <li class="mdui-list-item mdui-ripple">
+                        <div class="mdui-list-item-content list-item-title">失效原因</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['失效原因'] ? data['失效原因'] : '' %>
+                        </div>
+                    </li>
+                <ul class="mdui-list">
+                    <li class="mdui-list-item mdui-ripple">
+                        <div class="mdui-list-item-content list-item-title">失效日期</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['失效日期'] ? data['失效日期'] : '' %>
+                        </div>
+                    </li>
+                <ul class="mdui-list">
+                    <li class="mdui-list-item mdui-ripple">
+                        <div class="mdui-list-item-content list-item-title">保单挂失状态</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['保单挂失状态'] ? data['保单挂失状态'] : '' %>
+                        </div>
+                    </li>
+                <ul class="mdui-list">
+                    <li class="mdui-list-item mdui-ripple">
+                        <div class="mdui-list-item-content list-item-title">保单冻结状态</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['保单冻结状态'] ? data['保单冻结状态'] : '' %>
+                        </div>
+                    </li>
+                <ul class="mdui-list">
+                    <li class="mdui-list-item mdui-ripple">
+                        <div class="mdui-list-item-content list-item-title">保单质押第三方状态</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['保单质押第三方状态'] ? data['保单质押第三方状态'] : '' %>
+                        </div>
+                    </li>
+                <ul class="mdui-list">
+                    <li class="mdui-list-item mdui-ripple">
+                        <div class="mdui-list-item-content list-item-title">保单挂起状态</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['保单挂起状态'] ? data['保单挂起状态'] : '' %>
+                        </div>
+                    </li>
+                <ul class="mdui-list">
+                    <li class="mdui-list-item mdui-ripple">
+                        <div class="mdui-list-item-content list-item-title">保单补发次数</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['保单补发次数'] ? data['保单补发次数'] : '' %>
+                        </div>
+                    </li>
+                <ul class="mdui-list">
+                    <li class="mdui-list-item mdui-ripple">
+                        <div class="mdui-list-item-content list-item-title">是否犹豫期</div>
+                        <div class="mdui-list-item-content list-item-text click-to-copy">
+                            <%= data['是否犹豫期'] ? data['是否犹豫期'] : '' %>
+                        </div>
+                    </li>
+                </ul>
+                <li class="mdui-list-item mdui-ripple"></li>
+            </div>
+        </div>
+    </section>
+    <section class="main-content mdui-container mdui-collapse-item mdui-collapse-item-open mdui-shadow-3">
+        <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+            <i class="mdui-list-item-icon mdui-icon material-icons">people</i>
+            <div class="mdui-list-item-content">投保人信息</div>
+            <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+        </div>
+        <div class="mdui-collapse-item-body mdui-table-fluid mdui-shadow-0">
+            <table class="mdui-table mdui-table-hoverable">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>姓名    </th>
+                        <th>证件号码</th>
+                        <th>联系电话</th>
+                        <th>地址    </th>
+                        <th>备注    </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (let i = 0; i < data.投保人.length; i++) { %>
+                        <tr>
+                            <td><a href="/wu?id=<%= data.投保人[i].id ? data.投保人[i].id : '' %>" target="_blank"><%= i + 1 %></a></td>
+                            <td class="click-to-copy td-relation"><%= data.投保人[i].姓名 ? data.投保人[i].姓名 : '' %></td>
+                            <td class="click-to-copy td-relation"><%= data.投保人[i].证件号码 ? data.投保人[i].证件号码 : '' %></td>
+                            <td class="click-to-copy td-relation"><%= data.投保人[i].联系电话 ? data.投保人[i].联系电话 : '' %></td>
+                            <td class="click-to-copy mdui-text-truncate td-address"><%= data.投保人[i].地址 ? data.投保人[i].地址 : '' %></td>
+                            <td class="mdui-list-item-content list-item-text mdui-textfield mdui-text-truncate td-remark">
+                                <input class="mdui-textfield-input remark" remark="<%= data.投保人[i].id ? data.投保人[i].id : '' %>" 
+                                type="text" placeholder="备注" value="<%= data.投保人[i].备注 ? data.投保人[i].备注 : '' %>" />
+                            </td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </section>
+    <section class="main-content mdui-container mdui-collapse-item mdui-shadow-3">
+        <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+            <i class="mdui-list-item-icon mdui-icon material-icons">people</i>
+            <div class="mdui-list-item-content">被保险人信息</div>
+            <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+        </div>
+        <div class="mdui-collapse-item-body mdui-table-fluid mdui-shadow-0">
+            <table class="mdui-table mdui-table-hoverable">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>姓名</th>
+                        <th>证件号码</th>
+                        <th>与被保险人关系</th>
+                        <th>地址</th>
+                        <th>备注</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (let i = 0; i < data.被保险人.length; i++) { %>
+                        <tr>
+                            <td><a href="/wu?id=<%= data.被保险人[i].id ? data.被保险人[i].id : '' %>" target="_blank"><%= i + 1 %></a></td>
+                            <td class="click-to-copy td-relation"><%= data.被保险人[i].姓名 ? data.被保险人[i].姓名 : '' %></td>
+                            <td class="click-to-copy td-relation"><%= data.被保险人[i].证件号码 ? data.被保险人[i].证件号码 : '' %></td>
+                            <td class="click-to-copy td-relation"><%= data.被保险人[i].关系 ? data.被保险人[i].关系 : '' %></td>
+                            <td class="click-to-copy mdui-text-truncate td-address"><%= data.被保险人[i].地址 ? data.被保险人[i].地址 : '' %></td>
+                            <td class="mdui-list-item-content list-item-text mdui-textfield mdui-text-truncate td-remark">
+                                <input class="mdui-textfield-input remark" remark="<%= data.被保险人[i].id ? data.被保险人[i].id : '' %>" 
+                                type="text" placeholder="备注" value="<%= data.被保险人[i].备注 ? data.被保险人[i].备注 : '' %>" />
+                            </td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </section>
+    <section class="main-content mdui-container mdui-collapse-item mdui-shadow-3">
+        <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+            <i class="mdui-list-item-icon mdui-icon material-icons">people</i>
+            <div class="mdui-list-item-content">受益人信息</div>
+            <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+        </div>
+        <div class="mdui-collapse-item-body mdui-table-fluid mdui-shadow-0">
+            <table class="mdui-table mdui-table-hoverable">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>姓名</th>
+                        <th>证件号码</th>
+                        <th>险种名称</th>
+                        <th>被保险人</th>
+                        <th>受益人类型</th>
+                        <th>受益比例</th>
+                        <th>受益顺位</th>
+                        <th>关系</th>
+                        <th>生效日期</th>
+                        <th>备注</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (let i = 0; i < data.受益人.length; i++) { %>
+                        <tr>
+                            <td><a href="/wu?id=<%= data.受益人[i].id ? data.受益人[i].id : '' %>" target="_blank"><%= i + 1 %></a></td>
+                            <td class="click-to-copy mdui-text-truncate td-relation"><%= data.受益人[i].姓名 ? data.受益人[i].姓名 : '' %></td>
+                            <td class="click-to-copy mdui-text-truncate td-relation"><%= data.受益人[i].证件号码 ? data.受益人[i].证件号码 : '' %></td>
+                            <td class="click-to-copy mdui-text-truncate td-relation"><%= data.受益人[i].险种名称 ? data.受益人[i].险种名称 : '' %></td>
+                            <td class="click-to-copy mdui-text-truncate td-relation"><%= data.受益人[i].被保险人 ? data.受益人[i].被保险人 : '' %></td>
+                            <td class="click-to-copy mdui-text-truncate td-relation"><%= data.受益人[i].受益人类型 ? data.受益人[i].受益人类型 : '' %></td>
+                            <td class="click-to-copy mdui-text-truncate td-relation"><%= data.受益人[i].受益比例 ? data.受益人[i].受益比例 : '' %></td>
+                            <td class="click-to-copy mdui-text-truncate td-relation"><%= data.受益人[i].受益顺位 ? data.受益人[i].受益顺位 : '' %></td>
+                            <td class="click-to-copy mdui-text-truncate td-relation"><%= data.受益人[i].关系 ? data.受益人[i].关系 : '' %></td>
+                            <td class="click-to-copy mdui-text-truncate td-relation"><%= data.受益人[i].生效日期 ? data.受益人[i].生效日期 : '' %></td>
+                            <td class="mdui-list-item-content list-item-text mdui-textfield mdui-text-truncate td-remark">
+                                <input class="mdui-textfield-input remark" remark="<%= data.受益人[i].id ? data.受益人[i].id : '' %>" 
+                                type="text" placeholder="备注" value="<%= data.受益人[i].备注 ? data.受益人[i].备注 : '' %>" />
+                            </td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </section>
+    <section class="main-content mdui-container mdui-collapse-item mdui-collapse-item-open mdui-shadow-3">
+        <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+            <i class="mdui-list-item-icon mdui-icon material-icons">assignment</i>
+            <div class="mdui-list-item-content">险种信息</div>
+            <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+        </div>
+        <div class="mdui-collapse-item-body mdui-table-fluid mdui-shadow-0">
+            <table class="mdui-table mdui-table-hoverable">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>险种名称</th>
+                        <th>责任组名称</th>
+                        <th class="click-to-copy mdui-text-truncate td-narrow">保险期间</th>
+                        <th>保额/份数/档次</th>
+                        <th>标准保费</th>
+                        <th class="click-to-copy mdui-text-truncate td-narrow">健康加费</th>
+                        <th class="click-to-copy mdui-text-truncate td-narrow">职业加费</th>
+                        <th>交费方式</th>
+                        <th>交费期间</th>
+                        <th>下期应交日</th>
+                        <th class="click-to-copy mdui-text-truncate td-narrow">责任组状态</th>
+                        <th>交费状态</th>
+                        <th>备注</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (let i = 0; i < data.险种.length; i++) { %>
+                        <tr>
+                            <td><%= i + 1 %></td>
+                            <td class="click-to-copy mdui-text-truncate td-relation"><%= data.险种[i].险种名称 ? data.险种[i].险种名称 : '' %></td>
+                            <td class="click-to-copy mdui-text-truncate td-mid"><%= data.险种[i].责任组名称 ? data.险种[i].责任组名称 : '' %></td>
+                            <td class="click-to-copy mdui-text-truncate td-narrow"><%= data.险种[i].保险期间 ? data.险种[i].保险期间 : '' %></td>
+                            <td class="click-to-copy mdui-text-truncate"><%= data.险种[i]['保额/份数/档次'] ? data.险种[i]['保额/份数/档次'] : '' %></td>
+                            <td class="click-to-copy mdui-text-truncate"><%= data.险种[i].标准保费 ? data.险种[i].标准保费 : '' %></td>
+                            <td class="click-to-copy mdui-text-truncate td-narrow"><%= data.险种[i].健康加费 ? data.险种[i].健康加费 : '' %></td>
+                            <td class="click-to-copy mdui-text-truncate td-narrow"><%= data.险种[i].职业加费 ? data.险种[i].职业加费 : '' %></td>
+                            <td class="click-to-copy mdui-text-truncate"><%= data.险种[i].交费方式 ? data.险种[i].交费方式 : '' %></td>
+                            <td class="click-to-copy mdui-text-truncate"><%= data.险种[i].交费期间 ? data.险种[i].交费期间 : '' %></td>
+                            <td class="click-to-copy mdui-text-truncate"><%= data.险种[i].下期应交日 ? data.险种[i].下期应交日 : '' %></td>
+                            <td class="click-to-copy mdui-text-truncate td-narrow"><%= data.险种[i].责任组状态 ? data.险种[i].责任组状态 : '' %></td>
+                            <td class="click-to-copy mdui-text-truncate"><%= data.险种[i].交费状态 ? data.险种[i].交费状态 : '' %></td>
+                            <td class="mdui-list-item-content list-item-text mdui-textfield mdui-text-truncate td-remark">
+                                <input class="mdui-textfield-input remark-xz" remark="<%= data.险种[i].id ? data.险种[i].id : '' %>" 
+                                type="text" placeholder="备注" value="<%= data.险种[i].备注 ? data.险种[i].备注 : '' %>" />
+                            </td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </section>
+    <section class="main-content mdui-container mdui-collapse-item mdui-shadow-3">
+        <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+            <i class="mdui-list-item-icon mdui-icon material-icons">payment</i>
+            <div class="mdui-list-item-content">缴费信息</div>
+            <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+        </div>
+        <div class="mdui-collapse-item-body mdui-table-fluid mdui-shadow-0">
+            <table class="mdui-table mdui-table-hoverable">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>续期缴费银行</th>
+                        <th>账户名</th>
+                        <th>续期缴费账号</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (let i = 0; i < data.缴费信息.length; i++) { %>
+                        <tr>
+                            <td><%= i + 1 %></td>
+                            <td class="click-to-copy td-relation"><%= data.缴费信息[i].续期缴费银行 ? data.缴费信息[i].续期缴费银行 : '' %></td>
+                            <td class="click-to-copy td-relation"><%= data.缴费信息[i].账户名 ? data.缴费信息[i].账户名 : '' %></td>
+                            <td class="click-to-copy td-relation"><%= data.缴费信息[i].续期缴费账号 ? data.缴费信息[i].续期缴费账号 : '' %></td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </section>
+    <script src="/public/wb.js"></script>
+    <script src="/public/mdui.min.js"></script>
+</body>
+
+</html>

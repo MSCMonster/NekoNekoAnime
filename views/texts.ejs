@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>
+        <%=theme ? theme : '文章' %>
+    </title>
+    <link rel="stylesheet" href="/public/mdui.min.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/public/style.css">
+    <link rel="stylesheet" type="text/css" href="/public/texts.css">
+    <link rel="stylesheet" type="text/css" href="/public/header.css">
+    <script src="/public/jquery-3.6.0.min.js"></script>
+    <script src="/public/texts.js"></script>
+</head>
+
+<body>
+    <header mdui-headroom class="mdui-shadow-3 mdui-img-rounded">
+        <div class="left">
+            <a id="home-btn" href="/">欢迎！<%= nickname %></a>
+        </div>
+        <div class="mdui-center" style="width: 200px">
+            <%= theme ? theme : '文章' %>
+        </div>
+        <div id='logout-btn' class="right header-btn">
+            <a href="/logout">
+                <span>登出</span>
+            </a>
+        </div>
+    </header>
+    <div class="mdui-container" style="padding-top: 50px;">
+        <div id="overlay">
+            <div id="popup">
+                <span id="close">&times;</span>
+                <div id="content"></div>
+                <div class="button-container">
+                    <button id="close-btn" class="lay-btn mdui-btn mdui-btn-raised mdui-color-pink-accent">取消</button>
+                    <button id="submit-btn" class="submit-btn lay-btn mdui-btn mdui-btn-raised mdui-color-blue-100">使用</button>
+                    <button id="submitcopy-btn" class="submit-btn lay-btn mdui-btn mdui-btn-raised mdui-color-green-a200">使用并复制</button>
+                </div>
+            </div>
+        </div>
+        <div style="min-width: max-content;">
+            <% if (perm >= 8000) { %>
+                <div class="mdui-container-fluid mdui-shadow-2" style="background-color: #fff;padding: 5px;margin: 10px 0;">
+                    <h2 class="mdui-center" style="width: 200px">Add Article</h2>
+                    <div class="mdui-row" style="padding: 0 15px;">
+                        <div class="mdui-col-xs-3">
+                            <div class="mdui-textfield">
+                                <label class="mdui-textfield-label">Theme</label>
+                                <input id="theme-input" class="mdui-textfield-input" type="text" value="<%= theme ? theme : '文章' %>" />
+                            </div>
+                        </div>
+                        <div class="mdui-col-xs-9">
+                            <div class="mdui-textfield">
+                                <label class="mdui-textfield-label">Content (Shift+Enter to add line break)</label>
+                                <textarea id="content-input" class="mdui-textfield-input"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mdui-progress mdui-invisible" id="add-progress">
+                        <div class="mdui-progress-indeterminate"></div>
+                    </div>
+                </div>
+            <% } %>
+            <div class="mdui-table-fluid">
+                <table class="mdui-table">
+                    <thead>
+                        <tr>
+                            <th class="td-type">序号</th>
+                            <th class="td-name">使用次数</th>
+                            <th class="td-address">内容</th>
+                            <th class="td-name">字数</th>
+                            <th class="td-name">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="content-tbody">
+                        <%
+                        function countChineseCharacters(str) {
+                            const matches = str.match(/[\u4e00-\u9fa50-9a-zA-Z]/g);
+                            return matches ? matches.length : 0;
+                        }
+                        %>
+                        <% for (let i=0; i < data.length; i++) { %>
+                            <%
+                            let trColor = '';
+                            if (data[i].using) {
+                                trColor = 'mdui-color-blue-200';
+                            }
+                            if (!data[i].ok) {
+                                trColor = 'mdui-color-grey-400';
+                            }
+                            
+                            %>
+                            <tr id="<%= data[i].id %>" <%= `class=${trColor}` %>>
+                                <td class="td-type"><%= i + 1 %></td>
+                                <td class="td-name"><%= data[i].used ? data[i].used : 0 %></td>
+                                <td class="mdui-text-truncate td-address"><%= data[i].content %></td>
+                                <td class="td-name"><%= countChineseCharacters(data[i].content) %></td>
+                                <td class="td-name td-operate">
+                                    <button class="tr-btn mdui-btn mdui-btn-raised mdui-color-light-blue-100 open-dialog-btn" content="<%= data[i].content %>" tid="<%= data[i].id %>" using="<%= data[i].using %>">
+                                        查看
+                                    </button>
+                                    <% if (perm >= 8000) { %>
+                                        <button class="tr-btn mdui-btn mdui-btn-raised <%= data[i].ok ? "mdui-color-pink-accent" : "mdui-color-green-accent"%> show-texts-btn" tid="<%= data[i].id %>" show="<%=data[i].ok%>">
+                                            <%= data[i].ok ? "隐藏" : "显示"%>
+                                        </button>
+                                    <% } %>
+                                </td>
+                            </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="/public/mdui.min.js"></script>
+</body>
+
+</html>

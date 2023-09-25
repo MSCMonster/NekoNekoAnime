@@ -1,0 +1,63 @@
+a {
+    /* text-decoration: none; 去除下划线 */
+    color: inherit; /* 使用默认字体颜色 */
+    font-weight: bolder;
+}
+
+p {
+    margin: 0;
+}
+
+.main-content {
+    min-width: 85%;
+    background-color: #fff;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+
+.content-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* 将父元素分成两栏，均分空间 */
+    grid-gap: 10px;
+    /* 设置列之间的间隔 */
+    align-items: center;
+}
+
+.list-box {
+    padding: 0 10px;
+}
+
+.mdui-list {
+    padding: 0;
+}
+
+.list-item-title {
+    width: 4vh;
+}
+
+.list-item-text {
+    width: 24vh;
+}
+
+.td-address {
+    max-width: 120px;
+}
+
+.td-relation {
+    max-width: 100px;
+}
+
+.td-remark {
+    min-width: 260px;
+}
+
+.td-narrow {
+    max-width: 80px;
+}
+
+.td-mid {
+    max-width: 160px;
+}

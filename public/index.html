@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Chat Room</title>
+    <link rel="stylesheet" type="text/css" href="public/style.css">
+</head>
+
+<body>
+    <!-- <% include header %> -->
+    <div id="container">
+        <div id="chat-log"></div>
+        <div id="input-container">
+            <input type="text" id="username" placeholder="用户名">
+            <input type="text" id="message" placeholder="消息">
+            <button id="send-btn">biu~</button>
+        </div>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+
+        const chatLog = document.getElementById('chat-log');
+        const usernameInput = document.getElementById('username');
+        const messageInput = document.getElementById('message');
+        const sendButton = document.getElementById('send-btn');
+
+        sendButton.addEventListener('click', () => {
+            const username = usernameInput.value;
+            const message = messageInput.value;
+            socket.emit('chatMessage', { username, message });
+            messageInput.value = '';
+        });
+
+        socket.on('chatMessage', ({ username, message }) => {
+            const newMessage = document.createElement('div');
+            newMessage.innerHTML = `<strong>${username}</strong>: ${message}`;
+            chatLog.appendChild(newMessage);
+        });
+
+        socket.on('recentMessages', (messages) => {
+            chatLog.innerHTML = ``;
+            messages.forEach(({ username, message }) => {
+                const chatMessage = document.createElement('div');
+                chatMessage.innerHTML = `<strong>${username}</strong>: ${message}`;
+                chatLog.appendChild(chatMessage);
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var messageInput = document.getElementById("message");
+            messageInput.addEventListener("keydown", function (event) {
+                if (event.keyCode === 13 && !event.shiftKey) {
+                    event.preventDefault();
+                    document.getElementById("send-btn").click();
+                } else if (event.keyCode === 13 && event.shiftKey) {
+                    event.preventDefault();
+                    messageInput.value += "\n";
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

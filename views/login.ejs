@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <title>登录</title>
+    <link rel="stylesheet" href="/public/mdui.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/public/auth.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>登录</h1>
+        <span id="error" style="color: red;"></span>
+        <form action="/login" method="POST">
+            
+            <input type="text" name="username" placeholder="用户名" required>
+            <br>
+            <input type="password" name="password" placeholder="密码" required>
+            <br>
+            <div class="remember-me-checkbox">
+                <input type="checkbox" id="rememberMe" name="rememberMe">
+                <label for="rememberMe">
+                    <span class="checkmark">&#10004;</span>
+                    <span class="checktext">记住我</span>
+                </label>
+            </div>
+            <button id="login-btn" class="mdui-btn-raised mdui-ripple" type="submit">登录</button>
+            <br>
+        </form>
+        <p>还没有账号? <a href="/register">注册</a></p>
+    </div>
+    <script>
+        // 获取URL参数的函数
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+
+        // 当页面加载时执行的函数
+        window.onload = function () {
+            // 获取id为"error"的元素
+            var errorElement = document.getElementById("error");
+
+            // 获取URL参数error的值
+            var errorParam = getParameterByName("error");
+
+            // 将参数的值设置为元素的文本内容
+            if (errorParam !== "") {
+                errorElement.textContent = errorParam;
+            }
+        };
+    </script>
+    <script src="/public/mdui.min.js"></script>
+</body>
+
+</html>
