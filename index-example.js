@@ -249,6 +249,30 @@ function generateRegex(stringList) {
 //     server = http.createServer(app);
 // }
 
+// 创建目录
+const pathList = [
+    '/animes',
+    '/animes/cover',
+    '/downloads',
+  ];
+  
+  function createDirectoryRecursively(dirPath) {
+    const normalizedPath = path.normalize(dirPath);
+  
+    if (!fs.existsSync(normalizedPath)) {
+      // 如果路径不存在，创建它
+      fs.mkdirSync(normalizedPath, { recursive: true });
+      console.log(`已创建目录：${normalizedPath}`);
+    } else {
+      console.log(`目录已存在：${normalizedPath}`);
+    }
+  }
+  
+  // 递归的创建目录
+  pathList.forEach((dirPath) => {
+    createDirectoryRecursively(dirPath);
+  });
+
 const https = require('https');
 const http = require('http');
 const server = https.createServer(SSLOptions, app);
