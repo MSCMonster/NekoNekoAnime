@@ -31,9 +31,8 @@ function loadMoreAnimes(endpoint, litag, btntag, pageC, datalen, queryarg = '') 
                 // </a>`));
                 animeDiv.append($(`
                 <a href="/animeplayer?id=${anime.id}" target="_blank" class="an-info">
-                    ${anime.filecount ? '' : '<div class="overlay"></div>'}
                     <div class="an-info-group">
-                        <div class="date-text">${formattedDate}</div>
+                        <div class="date-text" style="${anime.filecount ? '' : 'color: #606060;'}">${formattedDate}</div>
                         <span class="mdui-text-color-black mdui-text-truncate auto-height" 
                             mdui-tooltip="{content:'${anime.animename}${anime.filecount ? '' : ' (无文件)'}',position:'bottom',delay:1}">
                             ${anime.animename}
