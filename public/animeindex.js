@@ -12,12 +12,23 @@ function loadMoreAnimes(endpoint, litag, btntag, pageC, datalen, queryarg = '') 
             // 将获取到的动漫数据添加到页面上
             data.forEach(anime => {
                 const formattedDate = formatDate(anime.start_date);
-                const animeDiv = $('<li class="mdui-shadow-5"></li>');
+                const animeDiv = $(`<li class="mdui-shadow-5" style="${anime.filecount ? '' : 'background-color: rgb(166, 156, 157);'}"></li>`);
                 animeDiv.append($(`
                     <a href="/animeplayer?id=${anime.id}" target="_blank">
                         <span class="p-img" style="background-image: url(${anime.coverurl})"></span>
                     </a>
                 `));
+                // animeDiv.append($(`
+                // <a href="/animeplayer?id=${anime.id}" target="_blank" class="an-info">
+                //     ${anime.filecount ? '' : '<div class="overlay"></div>'}
+                //     <div class="an-info-group">
+                //         <div class="date-text">${formattedDate}</div>
+                //         <span class="mdui-text-color-black mdui-text-truncate auto-height" 
+                //             mdui-tooltip="{content:'${anime.animename}${anime.filecount ? '' : ' (无文件)'}',position:'bottom',delay:1}">
+                //             ${anime.animename}
+                //         </span>
+                //     </div> 
+                // </a>`));
                 animeDiv.append($(`
                 <a href="/animeplayer?id=${anime.id}" target="_blank" class="an-info">
                     ${anime.filecount ? '' : '<div class="overlay"></div>'}
